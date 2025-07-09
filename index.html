@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>আমাদের রেস্টুরেন্ট</title>
+  <!-- Google Fonts: Hind Siliguri -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Hind Siliguri', Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #8B0000;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      background-color: #575757;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: 400px;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .hero:hover::before {
+      transform: scale(1.05);
+      filter: brightness(0.8);
+    }
+
+    .hero h1,
+    .hero p {
+      position: relative;
+      z-index: 3;
+      margin: 0;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    /* Menu Section */
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px; /* জায়গা হবে */
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .menu-item {
+      background-color: #f4f4f4;
+      padding: 20px;
+      width: calc(33.333% - 20px); /* প্রতি সারিতে ৩টি */
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .button {
+      background-color: #8B0000; /* WhatsApp green */
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 10px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background-color: #560e0e;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: #f9f9f9;
+    }
+    #contact h2 {
+      margin-bottom: 20px;
+    }
+    #contact p {
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 400px;
+      margin: 0 auto 30px auto;
+    }
+
+    /* Form */
+    form {
+      max-width: 400px;
+      margin: 0 auto 40px auto;
+      text-align: left;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Hind Siliguri', Arial, sans-serif;
+      font-size: 15px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    form button {
+      background-color: #8B0000;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    form button:hover {
+      background-color: #700000;
+    }
+
+    /* Map */
+    .map-container {
+      max-width: 600px;
+      margin: 0 auto 50px auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #8B0000;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>আমাদের রেস্টুরেন্ট</h1>
+    <p>সুস্বাদু খাবার, হৃদয় ছোঁয়া পরিবেশ</p>
+  </header>
+
+  <nav>
+    <a href="#home">হোম</a>
+    <a href="#menu">মেনু</a>
+    <a href="#contact">যোগাযোগ</a>
+  </nav>
+
+  <section class="hero" id="home">
+    <h1>স্বাগতম</h1>
+    <p>ঘরোয়া স্বাদ, রেস্টুরেন্টের পরিবেশে!</p>
+    <div style="position: relative; z-index: 3; max-width: 1000px; margin-top: 30px; text-align: center; font-size: 12px; line-height: 1.6;">
+    <p>🍽️ আমরা প্রতিদিন পরিবেশন করি ঘরোয়া স্বাদের তাজা ও স্বাস্থ্যকর খাবার, যা তৈরি হয় সর্বোচ্চ মান বজায় রেখে।</p>
+    <p>👨‍🍳 আমাদের দক্ষ শেফগণ দেশি ও বিদেশি খাবারে দক্ষ, যাঁরা প্রতিটি পদ রান্না করেন যত্ন ও ভালোবাসা দিয়ে।</p>
+    <p>🏡 পরিবার, বন্ধু কিংবা প্রিয়জনদের সঙ্গে সময় কাটানোর জন্য আমাদের রেস্টুরেন্টে রয়েছে আরামদায়ক, শান্তিপূর্ণ ও সুন্দর পরিবেশ।</p>
+  </div>
+  </section>
+
+  <section class="section" id="menu">
+    <h2>আমাদের মেন্যু</h2>
+    <div class="menu">
+
+      <div class="menu-item">
+        <img src="image/chicken-nuggets.jpg" alt="Chicken Nuggets" />
+        <h3>চিকেন নাগেটস</h3>
+        <p> নরম ও অত্যন্ত সুস্বাদু</p>
+        <strong>৳ ৩০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20চিকেন%20নাগেটস%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/beef-kabab.jpg" alt="Beef Kabab" />
+        <h3>বিফ কাবাব</h3>
+        <p>মসলাদার কাবাব স্বাদে</p>
+        <strong>৳ ৩৬০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20বিফ%20কাবাব%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/chicken-fry.jpg" alt="Chicken Fry" />
+        <h3>চিকেন ফ্রাই</h3>
+        <p>সুস্বাদু মুখরোচক ফ্রাই</p>
+        <strong>৳ ২৬০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20চিকেন%20ফ্রাই%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/beef-burger.jpg" alt="Burger" />
+        <h3>বিফ বার্গার</h3>
+        <p>রসালো চিজ যুক্ত ও সুস্বাদু</p>
+        <strong>৳ ২৯০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20বিফ%20বার্গার%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/fried-rice.jpg" alt="Veg Fried Rice" />
+        <h3>ভেজ ফ্রাইড রাইস</h3>
+        <p>সবজি ও সয়াসসের মিশ্রণে</p>
+        <strong>৳ ২০০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20ভেজ%20ফ্রাইড%20রাইস%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/tandoori-chicken.jpg" alt="Tandoori Chicken" />
+        <h3>তান্দুরি চিকেন</h3>
+        <p>মশলাদার তন্দুরি স্বাদে</p>
+        <strong>৳ ৩২০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20তান্দুরি%20চিকেন%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/chicken-biriyani.jpg" alt="Chicken Biryani" />
+        <h3>চিকেন বিরিয়ানি</h3>
+        <p>টকদার ও মশলাদার</p>
+        <strong>৳ ২৫০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20চিকেন%20বিরিয়ানি%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/beef-biriyani.jpg" alt="Beef Biryani" />
+        <h3>বিফ বিরিয়ানি</h3>
+        <p>টকদার ও মশলাদার</p>
+        <strong>৳ ৩০০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20বিফ%20বিরিয়ানি%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+
+      <div class="menu-item">
+        <img src="image/mutton-biriyani.jpg" alt="Mutton Biryani" />
+        <h3>মাটন বিরিয়ানি</h3>
+        <p>টকদার ও মশলাদার</p>
+        <strong>৳ ৩৫০</strong><br />
+        <a
+          class="button"
+          href="https://wa.me/8801558955821?text=আমি%20মাটন%20বিরিয়ানি%20অর্ডার%20করতে%20চাই"
+          target="_blank"
+          >অর্ডার করুন</a
+        >
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2>যোগাযোগ করুন</h2>
+    <p>
+      📍 গুলশান, ঢাকা<br />
+      📞 ০১৫৫৮৯৫৫৮২১<br />
+      📧 info@restaurant.com
+    </p>
+
+    <!-- Contact Form -->
+    <form action="#" method="post">
+      <label for="name">নাম</label>
+      <input type="text" id="name" name="name" placeholder="আপনার নাম লিখুন" required />
+
+      <label for="email">ইমেইল</label>
+      <input type="email" id="email" name="email" placeholder="আপনার ইমেইল লিখুন" required />
+
+      <label for="message">মেসেজ</label>
+      <textarea id="message" name="message" rows="4" placeholder="আপনার মেসেজ লিখুন" required></textarea>
+
+      <button type="submit">পাঠিয়ে দিন</button>
+    </form>
+
+    <!-- Google Map Embed -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9029657177917!2d90.41450031543126!3d23.79213178458867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7677f333bfb%3A0x6f1b6f5f4a8a8e88!2sGulshan%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1688940809210!5m2!1sen!2sbd"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <p>📍 গুলশান, ঢাকা | 📞 ০১৫৫৮৯৫৫৮২১ | 📧 info@restaurant.com</p>
+  </footer>
+
+</body>
+</html>
